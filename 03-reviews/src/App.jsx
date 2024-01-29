@@ -6,23 +6,34 @@ const App = () => {
   const [index, setIndex] = useState(0)
   const { name, job, image, text } = people[index]
 
+  const checkNumber = (number) => {
+    if (number > people.length - 1) {
+      return 0
+    }
+    if (number < 0) {
+      return people.length - 1
+    }
+    return number
+  }
+
   const nextPerson = () => {
     setIndex((currentIndex) => {
       const newIndex = currentIndex + 1
-      if (newIndex > people.length - 1) {
-        return 0
-      }
-      return newIndex
+      return checkNumber(newIndex)
     })
   }
   const prevPerson = () => {
     setIndex((currentIndex) => {
       const newIndex = currentIndex - 1
-      if (newIndex < 0) {
-        return people.length - 1
-      }
-      return newIndex
+      return checkNumber(newIndex)
     })
+  }
+  const randomPerson = () => {
+    let randomNumber = Math.floor(Math.random() * people.length)
+    if (randomNumber === index) {
+      randomNumber = index + 1
+    }
+    setIndex(checkNumber(randomNumber))
   }
 
   return (
@@ -45,6 +56,13 @@ const App = () => {
             <FaChevronRight />
           </button>
         </div>
+        <button
+          type="button"
+          className="btn btn-hipster"
+          onClick={randomPerson}
+        >
+          suprise me
+        </button>
       </article>
     </main>
   )
