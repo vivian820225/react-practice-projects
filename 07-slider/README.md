@@ -11,3 +11,10 @@ npm install
 npm run dev
 ```
 
+#### React Slick Library
+
+[React Slick Docs](https://react-slick.neostack.com/)
+
+```sh
+npm install react-slick slick-carousel --save
+```
