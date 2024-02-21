@@ -1,0 +1,134 @@
+:root {
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --tile-width: 120px;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+.tic-tac-toe {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--tile-width));
+  grid-template-rows: repeat(3, var(--tile-width));
+  position: relative;
+}
+
+.tile {
+  color: currentColor;
+  font-size: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #23272f;
+  cursor: pointer;
+  user-select: none;
+
+  &:nth-child(-n + 6) {
+    border-bottom: 4px solid #0074a6;
+  }
+
+  &:not(:nth-child(3n)) {
+    border-right: 4px solid #0074a6;
+  }
+}
+
+.strike {
+  position: absolute;
+  background-color: darkorange;
+}
+.strike-row-1 {
+  width: 100%;
+  height: 4px;
+  top: calc(var(--tile-width) / 2);
+}
+.strike-row-2 {
+  width: 100%;
+  height: 4px;
+  top: calc(var(--tile-width) * 3 / 2);
+}
+.strike-row-3 {
+  width: 100%;
+  height: 4px;
+  bottom: calc(var(--tile-width) / 2);
+}
+.strike-column-1 {
+  height: 100%;
+  width: 4px;
+  left: calc(var(--tile-width) / 2);
+}
+.strike-column-2 {
+  height: 100%;
+  width: 4px;
+  left: calc(var(--tile-width) * 3 / 2);
+}
+.strike-column-3 {
+  height: 100%;
+  width: 4px;
+  right: calc(var(--tile-width) / 2);
+}
+.strike-diagonal-1 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(45deg);
+}
+.strike-diagonal-2 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(-45deg);
+}
+
+.game-over {
+  text-align: center;
+  border: #5468ff 4px;
+  border-style: dotted;
+  padding: 10px;
+  margin-top: 50px;
+  font-size: 1.5em;
+  min-width: var(--tile-width);
+}
+
+.reset-button {
+  appearance: none;
+  border: none;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #5468ff;
+  color: white;
+  width: calc(var(--tile-width) * 3);
+  font-size: 1.5em;
+  cursor: pointer;
+
+  &:hover {
+    transition: box-shadow 0.2s ease-in-out;
+    box-shadow: 0 0 12px rgba(185, 192, 242, 0.5);
+  }
+}
