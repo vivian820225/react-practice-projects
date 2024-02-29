@@ -23,6 +23,11 @@ const AddCard = ({ column, setCards }) => {
     setAdding(false)
   }
 
+  const handleCancel = (e) => {
+    e.preventDefault()
+    setAdding(false)
+  }
+
   return (
     <>
       {adding ? (
@@ -35,7 +40,7 @@ const AddCard = ({ column, setCards }) => {
           />
           <div className="mt-1.5 flex items-center justify-end gap-1.5">
             <button
-              onClick={() => setAdding(false)}
+              onClick={handleCancel}
               className="px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
             >
               Close
