@@ -6,6 +6,10 @@ import AddCard from './AddCard'
 const Column = ({ title, headingColor, cards, column, setCards }) => {
   const [active, setActive] = useState(false)
 
+  const handleDragStart = (e, card) => {
+    e.dataTransfer.setData('cardId', card.id)
+  }
+
   const filteredCards = cards.filter((card) => card.column === column)
 
   return (
@@ -22,7 +26,9 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
         }`}
       >
         {filteredCards.map((card) => {
-          return <Card key={card.id} {...card} />
+          return (
+            <Card key={card.id} {...card} handleDragStart={handleDragStart} />
+          )
         })}
         <DropIndicator beforeId={null} column={column} />
         <AddCard column={column} setCards={setCards} />

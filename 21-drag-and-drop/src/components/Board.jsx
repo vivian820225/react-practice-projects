@@ -5,6 +5,7 @@ import BurnBarrel from './BurnBarrel'
 
 const Board = () => {
   const [cards, setCards] = useState(DefaultCards)
+
   return (
     <section className="flex h-full w-full gap-3 overflow-scroll p-12">
       <Column
