@@ -10,6 +10,19 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
     e.dataTransfer.setData('cardId', card.id)
   }
 
+  const handleDragOver = (e) => {
+    e.preventDefault()
+    setActive(true)
+  }
+
+  const handleDragLeave = (e) => {
+    setActive(false)
+  }
+
+  const handleDragEnd = (e) => {
+    setActive(false)
+  }
+
   const filteredCards = cards.filter((card) => card.column === column)
 
   return (
@@ -21,6 +34,9 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
         </span>
       </div>
       <div
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDragEnd}
         className={`h-full w-full transition-colors ${
           active ? 'bg-neutral-800/50' : 'bg-neutral-800/0'
         }`}
