@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Cards as DefaultCards } from '../data'
 import Column from './Column'
 import BurnBarrel from './BurnBarrel'
 
 const Board = () => {
-  const [cards, setCards] = useState(DefaultCards)
+  const [cards, setCards] = useState([])
+  const [hasChecked, setHasChecked] = useState(false)
+
+  useEffect(() => {
+    hasChecked && localStorage.setItem('kanban', JSON.stringify(cards))
+  }, [cards])
+
+  useEffect(() => {
+    const data = localStorage.getItem('kanban')
+    setCards(data ? JSON.parse(data) : [])
+    setHasChecked(true)
+  }, [])
 
   return (
     <section className="flex h-full w-full gap-3 overflow-scroll p-12">
